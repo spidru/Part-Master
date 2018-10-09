@@ -73,6 +73,11 @@ public class InventoryTable extends JTable implements TableModelListener
         super.getColumnModel().getColumn(3).setMaxWidth(50);        
     }
     
+    public DefaultTableModel getTableModel()
+    {
+        return model;
+    }
+    
     public void redraw()
     {
         // temporarily disable listener (otherwise exceptions are thrown by tableChanged())

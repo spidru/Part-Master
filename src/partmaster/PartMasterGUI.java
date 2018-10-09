@@ -55,7 +55,6 @@ public class PartMasterGUI
     private final JSearchTextField searchField = new JSearchTextField();
     
     private InventoryTable table;
-    private DefaultTableModel model;
     JScrollPane scrollPane;
     
     private BalloonTip bt;
@@ -130,7 +129,6 @@ public class PartMasterGUI
             addComponentButton.setIcon(new ImageIcon(img));
         }
         catch (IOException e) {Logger.println("Could not load Add Component icon");}
-        addComponentButton.setPreferredSize(addComponentButton.getPreferredSize());
         GridbagHelper.addComponent(addComponentButton,frame,gbc,0,0,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.NONE);
         
         /* Delete Component Button */
@@ -141,7 +139,6 @@ public class PartMasterGUI
             deleteComponentButton.setIcon(new ImageIcon(img));
         }
         catch (IOException e) {Logger.println("Could not load Delete Component icon");}
-        deleteComponentButton.setPreferredSize(addComponentButton.getPreferredSize());
         GridbagHelper.addComponent(deleteComponentButton,frame,gbc,1,0,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.NONE);
 
         /* Search Filter ComboBox */
@@ -153,7 +150,7 @@ public class PartMasterGUI
         filterSearchBox = new JComboBox(intArray);
         ComboBoxRenderer renderer = new ComboBoxRenderer(filterSearchBox);
         filterSearchBox.setRenderer(renderer);
-        filterSearchBox.setPreferredSize(addComponentButton.getPreferredSize());
+//        filterSearchBox.setPreferredSize(addComponentButton.getPreferredSize());
         GridbagHelper.addComponent(filterSearchBox,frame,gbc,2,0,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.NONE);
 		
         /* Search Filter TextField */
@@ -205,6 +202,7 @@ public class PartMasterGUI
 //		DefaultTableModel model = PartMasterGUI.getInstance().getTableModel();
         int filterCategory = PartMasterGUI.getInstance().getSearchFilterCategory();
         String text = searchField.getText().toUpperCase();
+        DefaultTableModel model = table.getTableModel();
         model.setRowCount(0);
         for (int i=0; i<Component.getList().size(); i++)
         {
