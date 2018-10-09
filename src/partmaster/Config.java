@@ -65,7 +65,11 @@ public class Config
             BufferedWriter bw = new BufferedWriter(fw);
         )
         {    
-            bw.write(Octopart.getApiKey());
+            String key = Octopart.getApiKey();
+            if (key != null)
+            {
+                bw.write(key);
+            }
         }
         catch (IOException e)
         {
